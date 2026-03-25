@@ -16,7 +16,7 @@ public class Tree<T> {
 
         /**
          * @param value the value of the node
-         * @param left the left child of the node
+         * @param left  the left child of the node
          * @param right the right child of the node
          */
         Node(T value, Node<T> left, Node<T> right) {
@@ -50,25 +50,22 @@ public class Tree<T> {
     public static Tree<Integer> makeSampleTree() {
         Tree<Integer> tree = new Tree<Integer>();
         tree.root = new Node<>(
-            5,
-            new Node<>(2,
-                new Node<>(1),
-                new Node<>(3)
-            ),
-            new Node<>(8,
-                new Node<>(7,
-                    new Node<>(6),
-                    null),
-                new Node<>(9,
-                    null,
-                    new Node<>(10)))
-        );
+                5,
+                new Node<>(2,
+                        new Node<>(1),
+                        new Node<>(3)),
+                new Node<>(8,
+                        new Node<>(7,
+                                new Node<>(6),
+                                null),
+                        new Node<>(9,
+                                null,
+                                new Node<>(10))));
         return tree;
     }
 
-
     /**
-     * @param node the root of the tree 
+     * @param node the root of the tree
      * @return the number elements found in this tree rooted at node
      */
     private int sizeH(Node<T> node) {
@@ -86,12 +83,24 @@ public class Tree<T> {
 
     ///// Part 1: Contains
 
+    public boolean containsHelper(T value, Node<T> cur) {
+        if (cur == null) {
+            return false;
+        } else if (cur.value == value) {
+            return true;
+        } else {
+            return containsHelper(value, cur.left) || containsHelper(value, cur.right);
+        }
+    }
+
     /**
      * @param value the value to search for
      * @return true iff the tree contains <code>value</code>
      */
     public boolean contains(T value) {
-        throw new UnsupportedOperationException();
+        Node<T> cur = root;
+
+        return containsHelper(value, cur);
     }
 
     ///// Part 2: Traversals
@@ -118,10 +127,10 @@ public class Tree<T> {
     }
 
     ///// Part 3: Stringifying Trees
-   
+
     /**
      * @return a string represent of this tree in the form, "[x1, ..., xk]."
-     * The order of the elements is left unspecified.
+     *         The order of the elements is left unspecified.
      */
     @Override
     public String toString() {
@@ -129,7 +138,7 @@ public class Tree<T> {
     }
 
     ///// Extra: Pretty Printing
-    
+
     /**
      * @return a string represent of this tree in bulleted list form.
      */
@@ -139,6 +148,7 @@ public class Tree<T> {
 
     /**
      * The main driver for this program
+     * 
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
