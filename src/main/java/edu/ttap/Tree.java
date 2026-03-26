@@ -1,5 +1,6 @@
 package edu.ttap;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -83,7 +84,13 @@ public class Tree<T> {
 
     ///// Part 1: Contains
 
-    public boolean containsHelper(T value, Node<T> cur) {
+    /**
+     * @param value The value we are looking for.
+     * @param cur The current node we are checking.
+     * @return true if the value is found in this node or any of its children, false
+     *         otherwise.
+     */
+    private boolean containsHelper(T value, Node<T> cur) {
         if (cur == null) {
             return false;
         } else if (cur.value == value) {
@@ -106,24 +113,72 @@ public class Tree<T> {
     ///// Part 2: Traversals
 
     /**
+     * @param cur The current node being visited.
+     * @param resultList The list where all found values are collected.
+     */
+    private void inorderHelper(Node<T> cur, List<T> resultList) {
+        if (cur == null) {
+            return;
+        }
+        inorderHelper(cur.left, resultList);
+        resultList.add(cur.value);
+        inorderHelper(cur.right, resultList);
+    }
+
+    /**
      * @return the elements of this tree collected via an in-order traversal
      */
     public List<T> toListInorder() {
-        throw new UnsupportedOperationException();
+        List<T> result = new ArrayList<>();
+
+        inorderHelper(this.root, result);
+        return result;
+    }
+
+    /**
+     * @param cur The current node being visited.
+     * @param resultList The single list where all found values are collected.
+     */
+    private void preorderHelper(Node<T> cur, List<T> resultList) {
+        if (cur == null) {
+            return;
+        }
+        resultList.add(cur.value);
+        preorderHelper(cur.left, resultList);
+        preorderHelper(cur.right, resultList);
     }
 
     /**
      * @return the elements of this tree collected via a pre-order traversal
      */
     public List<T> toListPreorder() {
-        throw new UnsupportedOperationException();
+        List<T> result = new ArrayList<>();
+
+        preorderHelper(this.root, result);
+        return result;
+    }
+
+    /**
+     * @param cur The current node being visited.
+     * @param resultList The single list where all found values are collected.
+     */
+    private void postorderHelper(Node<T> cur, List<T> resultList) {
+        if (cur == null) {
+            return;
+        }
+        postorderHelper(cur.left, resultList);
+        postorderHelper(cur.right, resultList);
+        resultList.add(cur.value);
     }
 
     /**
      * @return the elements of this tree collected via a post-order traversal
      */
     public List<T> toListPostorder() {
-        throw new UnsupportedOperationException();
+        List<T> result = new ArrayList<>();
+
+        postorderHelper(this.root, result);
+        return result;
     }
 
     ///// Part 3: Stringifying Trees
@@ -134,7 +189,8 @@ public class Tree<T> {
      */
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        List<T> list = this.toListInorder();
+        return list.toString();
     }
 
     ///// Extra: Pretty Printing

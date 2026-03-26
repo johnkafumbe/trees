@@ -63,8 +63,7 @@ public class TreeTest {
     @Test
     public void sampleTreeToStringTest() {
         Tree<Integer> sampleTree = Tree.makeSampleTree();
-        assertEquals("TODO: fille me in with the intended results of your toString implementation",
-            sampleTree.toString());
+        assertEquals("[1, 2, 3, 5, 6, 7, 8, 9, 10]", sampleTree.toString());
     }
 
 }
