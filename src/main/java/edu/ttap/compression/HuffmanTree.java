@@ -1,5 +1,7 @@
 package edu.ttap.compression;
 
+
+
 /**
  * A HuffmanTree derives a space-efficient coding of a collection of byte
  * values.
@@ -14,13 +16,53 @@ package edu.ttap.compression;
  */
 public class HuffmanTree {
 
+    private Node root;
+    private static final short EOF = 256;
+
+    /**
+     * Inner class to represent the binary tree structure
+     */
+    private static class Node{
+        short value;
+        Node left;
+        Node right;
+
+        Node(short value){
+            this.value = value;
+        }
+
+        Node(Node left, Node right){
+            this.left = left;
+            this.right = right;
+        }
+
+        boolean isLeaf(){
+            return left == null && right == null;
+        }
+    }
+
     /**
      * Constructs a new HuffmanTree from the given file.
      * @param in the input file (as a BitInputStream)
      */
     public HuffmanTree(BitInputStream in) {
-        // TODO: fill me in!
-    }
+        this.root = readTree(in);
+    } 
+
+    private Node readTree(BitInputStream in){
+        int bit = in.readBit();
+
+        if (bit == 0){
+            short value = (short) in.readBits(9);
+            return new Node(value);
+        } else {
+            Node left = readTree(in);
+            Node right = readTree(in);
+            return new Node(left, right);
+        }
+
+      }
+    
 
     /**
      * Decodes a stream of huffman codes from a file given as a stream of
@@ -31,6 +73,24 @@ public class HuffmanTree {
      * @param out the file to write the decompressed output to.
      */
     public void decode(BitInputStream in, BitOutputStream out) {
-        // TODO: fill me in!
+        while (true) {
+            Node current = root;
+
+            while (!current.isLeaf()) {
+                
+            int bit = in.readBit();
+            if(bit == 0){
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+
+                if(current.value == EOF){
+                    break;
+                }
+
+                out.write(current.value);
+            }
+        }
     }
 }
