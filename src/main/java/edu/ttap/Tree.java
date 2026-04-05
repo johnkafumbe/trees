@@ -12,7 +12,9 @@ public class Tree<T> {
      */
     public static class Node<T> {
         public T value;
+        
         public Node<T> left;
+        
         public Node<T> right;
 
         /**
