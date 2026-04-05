@@ -15,7 +15,9 @@ public class BinarySearchTree<T extends Comparable<? super T>> {
      */
     private static class Node<T> {
         T value;
+        
         Node<T> left;
+        
         Node<T> right;
 
         /**
@@ -125,8 +127,7 @@ public class BinarySearchTree<T extends Comparable<? super T>> {
 
     ///// Part 2: Ordered Traversals
 
-    /**
-     * 
+    /** 
      * @param cur        the current node in the recursion
      * @param resultList the list to append values to in-order
      */
