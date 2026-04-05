@@ -1,6 +1,6 @@
-# (_TODO: fill in the title of this assignment here!_)
+# Tree & BST Lab + Decompression Project
 
-Authors: (_TODO: fill in your names here!_)
+Authors: Cadel Saszik & John Kafumbe
 
 ## Build commands
 
@@ -10,6 +10,4 @@ Authors: (_TODO: fill in your names here!_)
 
 ## Resources
 
-*   (_TODO: fill in resources here!_)
-*   ...
-*   ...
+*  https://www.geeksforgeeks.org/dsa/binary-search-tree-set-1-search-and-insertion/ 
