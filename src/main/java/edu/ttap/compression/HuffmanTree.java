@@ -91,7 +91,6 @@ public class HuffmanTree {
                 current = current.right;
             }
             if (current.isLeaf()){
-                    if (current.isLeaf()) {
                         if (current.value == EOF) {
                             break;
                         }
@@ -101,5 +100,5 @@ public class HuffmanTree {
                 }
             }
         }
-    }
+    
 
