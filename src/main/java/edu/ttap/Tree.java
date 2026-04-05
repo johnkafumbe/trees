@@ -86,7 +86,7 @@ public class Tree<T> {
 
     /**
      * @param value The value we are looking for.
-     * @param cur The current node we are checking.
+     * @param cur   The current node we are checking.
      * @return true if the value is found in this node or any of its children, false
      *         otherwise.
      */
@@ -113,7 +113,7 @@ public class Tree<T> {
     ///// Part 2: Traversals
 
     /**
-     * @param cur The current node being visited.
+     * @param cur        The current node being visited.
      * @param resultList The list where all found values are collected.
      */
     private void inorderHelper(Node<T> cur, List<T> resultList) {
@@ -136,7 +136,7 @@ public class Tree<T> {
     }
 
     /**
-     * @param cur The current node being visited.
+     * @param cur        The current node being visited.
      * @param resultList The single list where all found values are collected.
      */
     private void preorderHelper(Node<T> cur, List<T> resultList) {
@@ -159,7 +159,7 @@ public class Tree<T> {
     }
 
     /**
-     * @param cur The current node being visited.
+     * @param cur        The current node being visited.
      * @param resultList The single list where all found values are collected.
      */
     private void postorderHelper(Node<T> cur, List<T> resultList) {

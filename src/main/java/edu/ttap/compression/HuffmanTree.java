@@ -1,7 +1,5 @@
 package edu.ttap.compression;
 
-
-
 /**
  * A HuffmanTree derives a space-efficient coding of a collection of byte
  * values.
@@ -92,7 +90,6 @@ public class HuffmanTree {
             } else {
                 current = current.right;
             }
-
             if (current.isLeaf()){
                     if (current.isLeaf()) {
                         if (current.value == EOF) {
