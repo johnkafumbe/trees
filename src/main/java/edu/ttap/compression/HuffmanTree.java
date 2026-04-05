@@ -29,6 +29,8 @@ public class HuffmanTree {
 
         Node(short value){
             this.value = value;
+            this.right = null;
+            this.left = null;
         }
 
         Node(Node left, Node right){
@@ -46,8 +48,14 @@ public class HuffmanTree {
      * @param in the input file (as a BitInputStream)
      */
     public HuffmanTree(BitInputStream in) {
-        this.root = readTree(in);
+        root = readTree(in);
     } 
+
+    /**
+     * Reads bits from stream to recontruct the huffman tree
+     * @param in the bit stream to read from
+     * @return the reconstructed node
+     */
 
     private Node readTree(BitInputStream in){
         int bit = in.readBit();
@@ -73,24 +81,28 @@ public class HuffmanTree {
      * @param out the file to write the decompressed output to.
      */
     public void decode(BitInputStream in, BitOutputStream out) {
-        while (true) {
-            Node current = root;
+        Node current = root;
 
-            while (!current.isLeaf()) {
-                
+        while (true) {
+
             int bit = in.readBit();
-            if(bit == 0){
+                
+            if (bit == 0) {
                 current = current.left;
             } else {
                 current = current.right;
             }
 
-                if(current.value == EOF){
-                    break;
+            if (current.isLeaf()){
+                    if (current.isLeaf()) {
+                        if (current.value == EOF) {
+                            break;
+                        }
+                        out.writeBits(current.value, 8);
+                        current = root;
+                    }
                 }
-
-                out.write(current.value);
             }
         }
     }
-}
+
