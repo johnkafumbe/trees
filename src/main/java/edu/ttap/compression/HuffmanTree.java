@@ -15,7 +15,7 @@ package edu.ttap.compression;
 public class HuffmanTree {
 
     private Node root;
-    
+
     private static final short EOF = 256;
 
     /**
@@ -23,9 +23,9 @@ public class HuffmanTree {
      */
     private static class Node {
         short value;
-        
+
         Node left;
-        
+
         Node right;
 
         Node(short value) {
@@ -95,15 +95,13 @@ public class HuffmanTree {
             } else {
                 current = current.right;
             }
-            if (current.isLeaf()){
-                        if (current.value == EOF) {
-                            break;
-                        }
-                        out.writeBits(current.value, 8);
-                        current = root;
-                    }
+            if (current.isLeaf()) {
+                if (current.value == EOF) {
+                    break;
                 }
+                out.writeBits(current.value, 8);
+                current = root;
             }
         }
-    
-
+    }
+}
